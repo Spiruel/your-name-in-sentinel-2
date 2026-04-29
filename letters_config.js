@@ -128,8 +128,7 @@ const LETTERS_CONFIG = {
   y: [
     { id:'y_0', title:'Bíobío River, Chile',       sub:'Chile',       lat:-37.267, lng: -72.729, delta:0.20, zoom:11, date:'2024-02-01', layer:'1_TRUE_COLOR', maps:'https://maps.google.com/maps?q=-37.267,-72.729&z=11' },
     { id:'y_1', title:'Estuario de Virrila, Peru', sub:'Peru',        lat: -5.865, lng: -80.731, delta:0.20, zoom:11, date:'2024-08-01', layer:'1_TRUE_COLOR', maps:'https://maps.google.com/maps?q=-5.865,-80.731&z=11' },
-    { id:'y_2', title:'Lake Pukaki, New Zealand',  sub:'New Zealand', lat:-43.522, lng: 170.832, delta:0.20, zoom:11, date:'2024-02-01', layer:'1_TRUE_COLOR', maps:'https://maps.app.goo.gl/vNfFAsk4VFF6pnTo7' } HTTP/1.1" 200 -
-127.0.0.1 - - [29/Apr/2026 16:28:03] "GET /images/m_
+    { id:'y_2', title:'Lake Pukaki, New Zealand',  sub:'New Zealand', lat:-43.522, lng: 170.832, delta:0.20, zoom:11, date:'2024-02-01', layer:'1_TRUE_COLOR', maps:'https://maps.app.goo.gl/vNfFAsk4VFF6pnTo7' }
   ],
   z: [
     { id:'z_0', title:'Primavera do Leste, Brazil',sub:'Brazil',      lat:-15.494, lng: -54.341, delta:0.15, zoom:12, date:'2024-06-29', layer:'1_TRUE_COLOR', maps:'https://maps.google.com/maps?q=-15.494,-54.341&z=12' },
