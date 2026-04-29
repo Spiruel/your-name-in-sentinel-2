@@ -4,7 +4,7 @@ Spell out your name using Sentinel-2 satellite imagery — real Earth features t
 
 Inspired by NASA's [Your Name in Landsat](https://science.nasa.gov/mission/landsat/outreach/your-name-in-landsat/).
 
-**[Live demo →](https://YOUR-USERNAME.github.io/name-in-sentinel/)**
+**[Live demo →]([https://YOUR-USERNAME.github.io/name-in-sentinel/](https://spiruel.github.io/your-name-in-sentinel-2/))**
 
 ---
 
