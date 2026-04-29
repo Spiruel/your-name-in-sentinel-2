@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name in Sentinel-2</title>
+  <meta name="description" content="Type your name and see it spelled out in Sentinel-2 satellite imagery from ESA's Copernicus programme. Explore Earth from space, letter by letter.">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- App -->
+  <link rel="stylesheet" href="./assets/style.css">
+
+  <!-- Keyboard (on-screen) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b3d6b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%2300c7e6' font-family='sans-serif' font-weight='bold'%3ES2%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <div class="headerElement" id="header">
+    <div id="header-logo" class="header-logo" title="ESA Copernicus">
+      <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Copernicus Sentinel-2">
+        <circle cx="15" cy="15" r="12" stroke="#00c7e6" stroke-width="2"/>
+        <circle cx="15" cy="15" r="6"  stroke="#00c7e6" stroke-width="1.5"/>
+        <line x1="15" y1="3"  x2="15" y2="27" stroke="#00c7e6" stroke-width="1"/>
+        <line x1="3"  y1="15" x2="27" y2="15" stroke="#00c7e6" stroke-width="1"/>
+        <text x="34" y="11" fill="#ffffff" font-family="Inter,sans-serif" font-size="9" font-weight="700">COPERNICUS</text>
+        <text x="34" y="23" fill="#00c7e6" font-family="Inter,sans-serif" font-size="10" font-weight="600">Sentinel-2</text>
+      </svg>
+    </div>
+
+    <b id="headerTitle">Your Name in Sentinel-2</b>
+
+    <span id="helpIcon" title="Help" role="button" tabindex="0" aria-label="Open help">
+      <i class="fa-regular fa-circle-question"></i>
+    </span>
+  </div>
+
+  <!-- ── Help panel ─────────────────────────────────────────── -->
+  <div class="helpContainer" id="helpContainer">
+    <button class="panel-close-btn" id="help-close-btn" aria-label="Close help">×</button>
+    <h3 style="margin-top:0;font-size:1em">About</h3>
+    <p>Type your name and see it spelled out using <strong>Sentinel-2</strong> satellite imagery — real Earth features that happen to look like letters.</p>
+    <p>Satellite images are captured by ESA's Copernicus Sentinel-2 mission at 10 m resolution.</p>
+    <hr>
+    <h3 style="font-size:1em">Using the app</h3>
+    <ul style="padding-left:1.2em;margin:0">
+      <li><strong>Click</strong> a letter to open it in Copernicus Browser</li>
+      <li><strong>Hover</strong> to see location info</li>
+      <li><strong>Download</strong> saves your name as a PNG</li>
+      <li><strong>Share</strong> copies a URL you can send to anyone</li>
+    </ul>
+    <hr>
+    <h3 style="font-size:1em">Live tiles</h3>
+    <p>Open <i class="fa-solid fa-gear"></i> Settings and enter your free <a href="https://identity.dataspace.copernicus.eu/" target="_blank" rel="noopener">Copernicus Data Space</a> OAuth credentials to load live Sentinel-2 imagery with configurable bands and dates.</p>
+  </div>
+
+  <!-- ── Letter image display ──────────────────────────────── -->
+  <div id="nameBoxes"></div>
+
+  <!-- ── Floating input bar ────────────────────────────────── -->
+  <div class="floating-wrapper" id="floating-wrapper">
+    <!-- Location info — hidden until letter hover/click -->
+    <div class="location-info" id="locationInfo">
+      <a href="" target="_blank" rel="noopener" class="location-title"      id="locationTitle">Title of image</a>
+      <a href="" target="_blank" rel="noopener" class="location-coordinates" id="locationCoordinates">—</a>
+    </div>
+
+    <p class="textBelowTitle" id="textBelowTitle">
+      Satellite imagery from ESA's Copernicus Sentinel-2 mission.
+    </p>
+
+    <div class="searchBar-row">
+      <!-- Popup for input errors -->
+      <div class="inputErrorPopup" id="inputPopup">
+        <span class="popuptext" id="popupText"></span>
+      </div>
+      <input
+        type="text"
+        id="nameInput"
+        maxlength="20"
+        placeholder="Type your name…"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        aria-label="Enter your name"
+      >
+      <button id="enterButton" aria-label="Show name in satellite imagery"><b>Enter</b></button>
+    </div>
+
+    <div class="button-row">
+      <button class="searchBar-button" id="downloadBtn"    title="Download PNG" aria-label="Download">
+        <i class="fa-solid fa-download"></i>
+      </button>
+      <button class="searchBar-button" id="qrCodeBtn"      title="Share / QR code" aria-label="Share">
+        <i class="fa-solid fa-share-nodes"></i>
+      </button>
+      <button class="searchBar-button" id="settingsBtn"    title="Settings — Copernicus credentials &amp; composite" aria-label="Settings">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── QR / Share popup ──────────────────────────────────── -->
+  <div class="qr-popup" id="qr-popup" role="dialog" aria-modal="true" aria-label="Share">
+    <div class="qr-popup-inner">
+      <button class="qr-close-btn" id="qr-close-btn" aria-label="Close">×</button>
+      <h2>Share your name</h2>
+      <img id="final-img" alt="Your name in Sentinel-2" style="max-width:300px;border-radius:8px">
+      <img id="qr-img"    alt="QR code" style="width:180px;margin-top:1rem">
+      <button class="copy-link-btn" id="copy-link-btn">
+        <i class="fas fa-link" id="copy-link-icon"></i>
+        <span id="copy-link-text">Copy link</span>
+      </button>
+      <p class="qr-description">Scan the QR code or copy the link to share your Sentinel-2 name.</p>
+      <p class="qr-description-two" id="info1">
+        The satellite images used here are part of ESA's Copernicus Sentinel-2 mission, providing global coverage at 10 m resolution since 2015.
+      </p>
+      <p class="qr-description-two" id="info3">
+        Sentinel-2 is operated by the <a href="https://www.esa.int/" target="_blank" rel="noopener">European Space Agency (ESA)</a> under the EU <a href="https://www.copernicus.eu/" target="_blank" rel="noopener">Copernicus</a> programme.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Settings popup ────────────────────────────────────── -->
+  <div class="settings-popup" id="settings-popup" role="dialog" aria-modal="true" aria-label="Settings">
+    <div class="settings-inner">
+      <button class="qr-close-btn" id="settings-close-btn" aria-label="Close settings">×</button>
+      <h2>Settings</h2>
+
+      <div class="settings-section">
+        <h3>Band composite</h3>
+        <p class="settings-hint">Choose which Sentinel-2 band combination to display.</p>
+        <select id="compositeSelect" aria-label="Band composite">
+          <!-- populated by JS -->
+        </select>
+        <p id="compositeDescription" class="settings-hint" style="margin-top:0.4em;font-style:italic"></p>
+      </div>
+
+      <div class="settings-section">
+        <h3>Live Sentinel-2 tiles <span class="badge-optional">optional</span></h3>
+        <p class="settings-hint">
+          Register for a free account at
+          <a href="https://identity.dataspace.copernicus.eu/" target="_blank" rel="noopener">Copernicus Data Space</a>,
+          then create an OAuth client in your
+          <a href="https://shapps.dataspace.copernicus.eu/dashboard/" target="_blank" rel="noopener">Sentinel Hub dashboard</a>.
+          Credentials are stored only in your browser's localStorage.
+        </p>
+        <label for="clientIdInput">OAuth Client ID</label>
+        <input type="text"     id="clientIdInput"     placeholder="sh-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off">
+        <label for="clientSecretInput">OAuth Client Secret</label>
+        <input type="password" id="clientSecretInput" placeholder="••••••••" autocomplete="new-password">
+
+        <div class="settings-status" id="settingsStatus"></div>
+      </div>
+
+      <div class="settings-section">
+        <h3>Per-letter overrides</h3>
+        <p class="settings-hint">
+          After entering your name, click any letter image to override its date or composite individually via the letter's Copernicus Browser link.
+        </p>
+      </div>
+
+      <div class="settings-buttons">
+        <button id="settingsSaveBtn"  class="btn-primary">Save &amp; apply</button>
+        <button id="settingsClearBtn" class="btn-danger">Clear credentials</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Scripts ───────────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+          integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./letters_config.js"></script>
+  <script src="./assets/main.js"></script>
+</body>
+</html>

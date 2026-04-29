@@ -1,0 +1,11 @@
+[project]
+name = "name-in-sentinel"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=12.2.0",
+    "requests>=2.33.1",
+    "tifffile>=2026.4.11",
+]
